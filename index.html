@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETA TI — Graphic Designer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #222222;
+      --accent: #e8ff47;
+      --text: #f0f0f0;
+      --muted: #666666;
+      --radius: 12px;
+      --gap: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #0a0a0a !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,255,71,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(56px, 8vw, 120px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(240,240,240,0.3);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-bio {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,255,71,0.1);
+      border: 1px solid rgba(232,255,71,0.2);
+      color: var(--accent);
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-top: 24px;
+    }
+
+    .available-badge::before {
+      content: '';
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── WORK SECTION ── */
+    .work {
+      padding: 80px 48px 120px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── FILTERS ── */
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gap);
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.3s ease;
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    /* layout sizes */
+    .card.large  { grid-column: span 7; }
+    .card.medium { grid-column: span 5; }
+    .card.half   { grid-column: span 6; }
+    .card.third  { grid-column: span 4; }
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .card.large .card-image  { aspect-ratio: 16/10; }
+    .card.medium .card-image { aspect-ratio: 4/3; }
+    .card.half .card-image   { aspect-ratio: 3/2; }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: block;
+    }
+
+    .card:hover .card-image img { transform: scale(1.05); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .card:hover .card-overlay { opacity: 1; }
+
+    .overlay-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .overlay-link:hover { transform: scale(1.05); }
+
+    .overlay-link svg {
+      width: 14px; height: 14px;
+    }
+
+    .card-body {
+      padding: 20px 24px 24px;
+    }
+
+    .card-category {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .meta-item svg { width: 13px; height: 13px; opacity: 0.6; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 80px 48px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .skill-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .skill-type {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .experience {
+      margin-top: 40px;
+    }
+
+    .exp-title {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .exp-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+
+    .exp-company { font-weight: 600; font-size: 15px; }
+    .exp-role { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .exp-country { font-size: 12px; color: var(--muted); flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 18px 28px; }
+      .hero { padding: 100px 28px 60px; }
+      .work { padding: 60px 28px 80px; }
+      .about { padding: 60px 28px; gap: 48px; }
+      footer { padding: 40px 28px; }
+
+      .card.large  { grid-column: span 12; }
+      .card.medium { grid-column: span 12; }
+      .card.half   { grid-column: span 6; }
+      .card.third  { grid-column: span 6; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 90px 20px 48px; }
+      .hero h1 { font-size: clamp(40px, 10vw, 72px); }
+      .hero-stats { gap: 28px; }
+      .work { padding: 48px 20px 60px; }
+      .about { grid-template-columns: 1fr; gap: 40px; padding: 48px 20px; }
+      footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+
+      .card.large, .card.medium, .card.half, .card.third { grid-column: span 12; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ETA TI</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://www.behance.net/designeta" target="_blank" rel="noopener" class="nav-cta">Behance ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-tag">Graphic Designer · Moscow</span>
+  <h1>Design that<br /><em>speaks.</em></h1>
+  <div class="hero-bottom">
+    <div>
+      <p class="hero-bio">
+        I'm a graphic designer passionate about digital, social media design, and visual storytelling.
+        Crafting identities, interfaces, and experiences that connect brands with people.
+      </p>
+      <div class="available-badge">Available for Freelance &amp; Full-time</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">11</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years exp</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Companies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-header">
+    <span class="section-title">Selected works</span>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="smm">Social Media</button>
+      <button class="filter-btn" data-filter="uxui">UX/UI</button>
+      <button class="filter-btn" data-filter="poster">Posters</button>
+      <button class="filter-btn" data-filter="editorial">Editorial</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. МОСБИРЖА — large -->
+    <div class="card large reveal" data-cat="smm">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/f844ce240266983.Y3JvcCwyMDcxLDE2MjAsNDA1LDA.png"
+          alt="МОСБИРЖА SMM"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/240266983/mosbirzha-smm" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Social Media</div>
+        <div class="card-title">МОСБИРЖА // SMM</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">Visual Identity</span>
+          <span class="tag">Social Media</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            22
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            25
+          </span>
+          <span class="meta-item">Dec 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ФИНУСЛУГИ — medium -->
+    <div class="card medium reveal" data-cat="smm">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/53f7fb240267209.Y3JvcCwyMDcxLDE2MjAsNDA1LDA.png"
+          alt="ФИНУСЛУГИ SMM"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/240267209/finuslugi-smm" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Social Media</div>
+        <div class="card-title">ФИНУСЛУГИ // SMM</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">Brand Identity</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            3
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            26
+          </span>
+          <span class="meta-item">Dec 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. URBAN VIBES — medium -->
+    <div class="card medium reveal" data-cat="smm branding">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/fe6454223905723.Y3JvcCwxOTg5LDE1NTUsMzEwLDU5.png"
+          alt="URBAN VIBES Sportmaster"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/223905723/URBAN-VIBES-Sportmaster-social-media-posters" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Social Media · Branding</div>
+        <div class="card-title">URBAN VIBES × Sportmaster</div>
+        <div class="card-tags">
+          <span class="tag">Photoshop</span>
+          <span class="tag">After Effects</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Animation</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            4
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            36
+          </span>
+          <span class="meta-item">Apr 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Organic Woman — large -->
+    <div class="card large reveal" data-cat="uxui">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/ff2f30223369369.Y3JvcCwxOTg5LDE1NTUsNDQzLDM0.png"
+          alt="Organic Woman Website Redesign"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/223369369/Organic-woman-website-redesign" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">UX/UI · Web Design</div>
+        <div class="card-title">Organic Woman — Website Redesign</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">UI</span>
+          <span class="tag">Landing Page</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            6
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            36
+          </span>
+          <span class="meta-item">Apr 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Smart Paw — half -->
+    <div class="card half reveal" data-cat="uxui">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/16d6bf199255299.Y3JvcCwzMzE1LDI1OTMsMTE0MCw1NTg.jpg"
+          alt="Smart Paw UX/UI"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/199255299/gostinica-dlja-koshek-i-sobak-Smart-Paw-UXUI" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">UX/UI</div>
+        <div class="card-title">Smart Paw — Pet Hotel App</div>
+        <div class="card-tags">
+          <span class="tag">Web Design</span>
+          <span class="tag">UI Design</span>
+          <span class="tag">UX/UI</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            4
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            59
+          </span>
+          <span class="meta-item">May 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Golubitskoe — half -->
+    <div class="card half reveal" data-cat="branding smm">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/080fbf206957577.Y3JvcCwzMzE1LDI1OTMsMTE0MCw1NTg.jpg"
+          alt="Golubitskoe Estate Brand"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/206957577/Golubitskoe-estate-brand-and-social-media" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Branding · Social Media</div>
+        <div class="card-title">Golubitskoe Estate — Brand &amp; SMM</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">Visual Identity</span>
+          <span class="tag">Branding</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            1
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            31
+          </span>
+          <span class="meta-item">Sep 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. The 100 — medium -->
+    <div class="card medium reveal" data-cat="uxui poster">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/5b13da125204305.Y3JvcCwxMzgwLDEwODAsMjUyLDA.jpg"
+          alt="The 100 Online Poster Gallery"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/125204305/The-100-Online-poster-gallery" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">UX/UI · Poster</div>
+        <div class="card-title">The 100 — Online Poster Gallery</div>
+        <div class="card-tags">
+          <span class="tag">Illustrator</span>
+          <span class="tag">App Design</span>
+          <span class="tag">Web Design</span>
+          <span class="tag">Diploma</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            7
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            129
+          </span>
+          <span class="meta-item">Aug 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Who is Maud Dixon — large -->
+    <div class="card large reveal" data-cat="uxui">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/7cde14176763743.Y3JvcCwxNTcwLDEyMjgsMTEzNCw0NjY.jpg"
+          alt="Landing Who is Maud Dixon"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/176763743/Landing-Who-is-Maud-Dixon" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">UX/UI · Landing Page</div>
+        <div class="card-title">Landing — "Who Is Maud Dixon?"</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Book Website</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            3
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            76
+          </span>
+          <span class="meta-item">Aug 2023</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. BAUHAUS — third -->
+    <div class="card third reveal" data-cat="poster">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/3badae112453985.Y3JvcCwxMzgwLDEwODAsMjcwLDA.jpg"
+          alt="Bauhaus Posters Series"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/112453985/BAUHAUS-POSTERS-SERIES" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Poster Series</div>
+        <div class="card-title">Bauhaus Posters Series</div>
+        <div class="card-tags">
+          <span class="tag">Illustrator</span>
+          <span class="tag">Typography</span>
+          <span class="tag">Print</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            5
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            102
+          </span>
+          <span class="meta-item">Jan 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. MORFIY — third -->
+    <div class="card third reveal" data-cat="editorial">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/06260d110903661.Y3JvcCwxMzgwLDEwODAsMjcwLDA.jpg"
+          alt="MORFIY Book Redesign"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/110903661/MORFIY-BOOK-REDESIGN" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Editorial · Book Design</div>
+        <div class="card-title">Morfiy — Book Redesign</div>
+        <div class="card-tags">
+          <span class="tag">Photoshop</span>
+          <span class="tag">InDesign</span>
+          <span class="tag">Illustration</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            1
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            64
+          </span>
+          <span class="meta-item">Jan 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. GULAG — third -->
+    <div class="card third reveal" data-cat="editorial">
+      <div class="card-image">
+        <img
+          src="https://mir-s3-cdn-cf.behance.net/projects/404/a19205110833549.Y3JvcCwxMzgwLDEwODAsMjM5LDA.jpg"
+          alt="Gulag Archipelago Catalogue"
+          loading="lazy"
+        />
+        <div class="card-overlay">
+          <a class="overlay-link" href="https://www.behance.net/gallery/110833549/GULAG-ARCHIPELAGO-CATALOGUE" target="_blank" rel="noopener">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-category">Editorial · Catalogue</div>
+        <div class="card-title">Gulag Archipelago — Catalogue</div>
+        <div class="card-tags">
+          <span class="tag">InDesign</span>
+          <span class="tag">Photoshop</span>
+          <span class="tag">Print</span>
+        </div>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            2
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            81
+          </span>
+          <span class="meta-item">Jan 2021</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <h2>About me</h2>
+    <p>I'm a 26-year-old graphic designer from Moscow, Russia — passionate about digital, social media design, and writing. I bridge visual storytelling with strategic thinking to craft work that resonates.</p>
+    <p>My toolkit spans UI/UX, branding, editorial design, and motion — allowing me to take projects from concept to launch across any medium.</p>
+
+    <div class="experience">
+      <div class="exp-title">Experience</div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-company">Nectarin</div>
+          <div class="exp-role">Graphic Designer</div>
+        </div>
+        <div class="exp-country">Russia</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-company">SMMagic Digital Agency</div>
+          <div class="exp-role">Graphic Designer / Art Director</div>
+        </div>
+        <div class="exp-country">Russia</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-company">Eventum Premo</div>
+          <div class="exp-role">Graphic Designer</div>
+        </div>
+        <div class="exp-country">Russia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-name">Figma</div>
+      <div class="skill-type">UI/UX · Prototyping</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Photoshop</div>
+      <div class="skill-type">Photo · Retouching</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Illustrator</div>
+      <div class="skill-type">Vector · Illustration</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">After Effects</div>
+      <div class="skill-type">Motion · Animation</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">InDesign</div>
+      <div class="skill-type">Editorial · Print</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Social Media</div>
+      <div class="skill-type">SMM · Content</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ETA TI</div>
+  <div class="footer-links">
+    <a href="https://www.behance.net/designeta" target="_blank" rel="noopener">Behance ↗</a>
+    <a href="mailto:olaf52018@outlook.com">Email</a>
+  </div>
+  <div class="footer-copy">© 2025 ETA TI. All rights reserved.</div>
+</footer>
+
+<script>
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          const cats = card.dataset.cat || '';
+          card.classList.toggle('hidden', !cats.includes(filter));
+        }
+      });
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * i);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
